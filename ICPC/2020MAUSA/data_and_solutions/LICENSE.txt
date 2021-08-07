@@ -1,0 +1,9 @@
+Unless otherwise indicated,
+solutions in this directory are licensed under 
+CC BY-SA -- share/adapt these files freely, but include attribution,
+            and re-distribute under this same license.
+https://creativecommons.org/licenses/by-sa/3.0/
+https://creativecommons.org/licenses/by-sa/3.0/legalcode
+
+Attribution can be to the author as listed in the source code,
+or (if none present) the original filename plus "from ICPC NA regional contest judge, 2020".
