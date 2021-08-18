@@ -33,11 +33,27 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    /* code starts here */
-    int n;
-    cin >> n;
+    map<string, string> dict;
 
-    rep(i, 0, n) {
-        
+    string line;
+    string eng, blab;
+
+    while (cin.peek() != '\n' ) {
+        cin >> eng >> blab;
+        dict[blab] = eng;
+        if (cin.peek() == '\n') cin.get();
     }
+    
+    string word;
+    while (cin >> word) {
+        if (dict.count(word)) {
+            cout << dict[word] << endl;
+        } else {
+            cout << "eh" << endl;
+        }
+    }
+
+    // trav(item, dict) {
+    //     cout << item.first << " " << item.second << endl;
+    // }
 }

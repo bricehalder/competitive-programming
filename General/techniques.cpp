@@ -2,18 +2,28 @@
 
 using namespace std;
 
+typedef vector<int>        vi;
+typedef vector< vi >       vvi;
+typedef pair<int, int>     pii;
+typedef vector< pii >      vii;
+ 
+typedef vector< bool >     vb;
+typedef vector< vb >       vvb;
+ 
+typedef long long          ll;
+typedef vector<ll>         vl;
+typedef vector< vl >       vvl;
+typedef pair<ll, ll>       pll;
+typedef vector< pll >      vll;
+
 #define rep(i, a, b) for(int i = a; i < (b); ++i)
 #define all(x) begin(x), end(x)
 #define sz(x) (int)(x).size()
+#define trav(a, x) for(auto& a : x)
 #define mp make_pair
 #define debug(content) if (DEBUG_MODE) cout << "DEBUG: " << content << endl
 #define DEBUG_MODE 1
 #define TRvii(c, it) for (vii::iterator it = (c).begin(); it != (c).end(); it++)
-
-typedef long long ll;
-typedef vector<int> vi;
-typedef pair<int,int> pii;
-typedef vector<pii> vii;
 
 queue<int> q;
 vector<int> adj[N]; // Unweighted
@@ -143,5 +153,34 @@ int main() {
         else l = mid + 1;
     }
         return x[l] == k;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Combinatorics */
+
+    //generate n choose k table using DP for later use
+    vvl nck(21, vl(21, 0));
+    for (int i = 0; i <= 20; i++) {
+        nck[i][0] = 1;
+    }
+    for (int i = 1; i <= 20; i++) {
+        for (int j = 1; j <= i; j++) {
+            nck[i][j] = nck[i-1][j-1] + nck[i-1][j];
+        }
     }
 }

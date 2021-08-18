@@ -33,11 +33,35 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    /* code starts here */
     int n;
     cin >> n;
 
+    string binaryOrig = "";
+    string binaryWant = "";
+
+    char c;
     rep(i, 0, n) {
-        
+        cin >> c;
+        (c == 'B') ? binaryOrig += '1' : binaryOrig += '0';
     }
+
+    rep(i, 0, n) {
+        cin >> c;
+        (c == 'B') ? binaryWant += '1' : binaryWant += '0';
+    }
+
+    bitset<32> orig(stoi(binaryOrig, nullptr, 2));
+    bitset<32> want(stoi(binaryWant, nullptr, 2));
+    
+    bitset<32> new_b(orig & want);
+    size_t best = new_b.count();
+    
+    rep(i, 0, n - 1) {
+        bitset<32> new_b(rotr(orig, i));
+        new_b &= want;
+        if (new_b.count() > best) {
+            best = new_b.count();
+        }
+    }
+    
 }
