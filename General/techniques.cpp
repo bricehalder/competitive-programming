@@ -25,10 +25,12 @@ typedef vector< pll >      vll;
 #define DEBUG_MODE 1
 #define TRvii(c, it) for (vii::iterator it = (c).begin(); it != (c).end(); it++)
 
+int N = 50;
+
 queue<int> q;
-vector<int> adj[N]; // Unweighted
-vector<pair<int,int>> adj2[N]; // Weighted
-bool visited[N];
+vector<int> adj(N); // Unweighted
+vector<pair<int,int>> adj2(N); // Weighted
+vector<bool> visited(N);
 
 /* Comparison operator overlord for sort() */
 struct P {
@@ -72,12 +74,6 @@ int main() {
     while (cin >> x) {
         // code
     }
-
-
-
-
-
-
 
 
 
@@ -141,34 +137,65 @@ int main() {
 
 
 
-
-
-
     // binary search
     bool search(int x[], int n, int k) {
-    int l = 0, r = n - 1;
-    while (l < r) {
-        int mid = (l + r) / 2;
-        if (x[mid] >= k) r = mid; 
-        else l = mid + 1;
-    }
+        int l = 0, r = n - 1;
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (x[mid] >= k) r = mid; 
+            else l = mid + 1;
+        }
         return x[l] == k;
     }
 
 
+// fenwick tree implementations
 
+int BIT[MAXN];
+void update(int x, int val) { 
+    ++x;  
+    while(x<=N)  {  
+        BIT[x] += val;  
+        x+=(x&-x);
+    } 
+}
 
+int query(int x) {
+    ++x;
+    int res = 0;
+    while (x > 0) {
+        res += BIT[x];
+        x -= (x & -x);
+    }
+    return res; } 
 
+// def increase(int i, int delta):
+//     for all j with g(j) <= i <= j:
+//         t[j] += delta
 
+// def sum(int r):
+//     res = 0
+//     while (r >= 0):
+//         res += t[r]
+//         r = g(r) - 1
+//     return res
 
+void add(int idx, int val) {
+    for (++idx; idx < n; idx += idx & -idx)
+        bit[idx] += val;
+}
 
+void range_add(int l, int r, int val) {
+    add(l, val);
+    add(r + 1, -val);
+}
 
-
-
-
-
-
-
+int point_query(int idx) {
+    int ret = 0;
+    for (++idx; idx > 0; idx -= idx & -idx)
+        ret += bit[idx];
+    return ret;
+}
 
 
     /* Combinatorics */
@@ -183,4 +210,16 @@ int main() {
             nck[i][j] = nck[i-1][j-1] + nck[i-1][j];
         }
     }
+
+    // gcd
+    // def gcd(a, b):
+    // return a if b == 0 else gcd(b, a%b)
+
+    // int gcd(int a, int b) {
+    //     if (b == 0) return a;
+    //     return gcd(b, a % b);
+    // }
+
+
+    return 0;
 }
